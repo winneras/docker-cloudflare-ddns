@@ -39,7 +39,7 @@ getPublicIpAddress() {
 
     # try dns method first. For some reason cloud flare cannot get my ip
     # CLOUD_FLARE_IP=$(dig +short @$DNS_SERVER ch txt whoami.cloudflare +time=3 | tr -d '"')
-    CLOUD_FLARE_IP=$(dig +short myip.opendns.com @resolver1.opendns.com +time=3)
+    CLOUD_FLARE_IP=$(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')
     CLOUD_FLARE_IP_LEN=${#CLOUD_FLARE_IP}
 
     # if using cloud flare fails, try opendns (some ISPs block 1.1.1.1)
